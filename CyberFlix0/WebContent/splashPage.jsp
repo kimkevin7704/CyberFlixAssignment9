@@ -62,7 +62,7 @@ int var = n.get(i).getFilmID();
 	if(CyberFlixLoginServlet.isLogged)
 	{
 %>	
-	    <button id="cart-button" onclick="document.getElementById('cart').style.display='block'" type="button" style="position: relative; right: 0; bottom: 0">Add To Cart</button>
+	    <button id="cart-button<%=i%>" onclick="document.getElementById('cart').style.display='block'" type="button" style="position: relative; right: 0; bottom: 0">Add To Cart</button>
 <%
 	}
 %>    
@@ -83,7 +83,7 @@ for (int i = 4; i < n.size(); i++)
 	if(CyberFlixLoginServlet.isLogged)
 	{
 %>	
-	    <button id="cart-button" onclick="document.getElementById('cart').style.display='block'" type="button" style="position: relative; right: 0; bottom: 0">Add To Cart</button>
+	    <button id="cart-button<%=i%>" onclick="document.getElementById('cart').style.display='block'" type="button" style="position: relative; right: 0; bottom: 0">Add To Cart</button>
 <%
 	}
 %>    
@@ -101,7 +101,6 @@ for (int i = 4; i < n.size(); i++)
 
         <div class="w3-container">
           <form action="http://localhost:8080/CyberFlix0/CyberFlixAddServlet" method="get">
-              
 			<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="NO" name="addFilm" style="position: absolute; left: 0; bottom: 0">
           	<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="YES" name="addFilm">
           </form>

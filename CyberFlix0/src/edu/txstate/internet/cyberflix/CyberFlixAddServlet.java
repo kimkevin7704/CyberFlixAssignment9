@@ -31,7 +31,8 @@ public class CyberFlixAddServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		
 		
 		String addFilm = request.getParameter("addFilm");
 		if(addFilm == "YES")
@@ -41,7 +42,7 @@ public class CyberFlixAddServlet extends HttpServlet {
 		else
 		{
 			//go back to screen
-			request.getRequestDispatcher(request.getContextPath()).forward(request, response);
+			request.getRequestDispatcher("splashPage.jsp").forward(request, response);
 		}
 		request.getRequestDispatcher("MovieSearchResults.jsp").forward(request, response);			
 	}
