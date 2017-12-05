@@ -57,7 +57,16 @@ for (int i = 0; i < n.size() - 4; i++)
 {
 int var = n.get(i).getFilmID();
 %>
-<div class="w3-col m3 w3-center w3-hover-opacity"><a href="http://localhost:8080/CyberFlix0/CyberFlixMovieDetailServlet?film_id=<%=var%>"><img style="width: 100%" src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg"></a></div>
+<div class="w3-col m3 w3-center w3-hover-opacity"><a href="http://localhost:8080/CyberFlix0/CyberFlixMovieDetailServlet?film_id=<%=var%>"><img style='height: 100%; width: 100%; object-fit: contain' src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg"></a>
+<% 
+	if(CyberFlixLoginServlet.isLogged)
+	{
+%>	
+	    <button id="cart-button" onclick="document.getElementById('cart').style.display='block'" type="button" style="position: relative; right: 0; bottom: 0">Add To Cart</button>
+<%
+	}
+%>    
+</div>
 <%} %>
 </div>
 <div id="content" class="w3-row">
@@ -68,27 +77,20 @@ for (int i = 4; i < n.size(); i++)
 %>
 <div class="w3-col m3 w3-center w3-hover-opacity">
 	<a href="http://localhost:8080/CyberFlix0/CyberFlixMovieDetailServlet?film_id=<%=var%>">
-		<img style="width: 100%" src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg">
+		<img style='height: 100%; width: 100%; object-fit: contain' src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg">
 	</a>
 <% 
 	if(CyberFlixLoginServlet.isLogged)
 	{
 %>	
-		<div class="w3-row w3-center">
-	    	<div class="w3-col s1 m3 l4"><p></p></div>
-	      		<div class="w3-col s10 m6 l4">
-	        		<button id='cart-button' onclick="document.getElementById('cart').style.display='block'" class="w3-button w3-round-large" style="position: absolute; right: 0; bottom: 0">Add 2 Cart
-	        		</button>
-	      		</div>
-	      	<div class="w3-col s1 m3 l4"><p></p></div>
-	    </div>
+	    <button id="cart-button" onclick="document.getElementById('cart').style.display='block'" type="button" style="position: relative; right: 0; bottom: 0">Add To Cart</button>
 <%
 	}
 %>    
 </div>
-<%} %>
+<div class="w3-col s1 m3 l4"><p></p></div>
 </div>
-
+<%} %>
 <!-- cart button -->	
 <div id="cart" class="w3-modal w3-display-middle">
       <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-middle">
@@ -98,33 +100,11 @@ for (int i = 4; i < n.size(); i++)
           </header>
 
         <div class="w3-container">
-          <form action="http://localhost:8080/CyberFlix0/CyberFlixServlet" method="get">
-              Film Title: <input type="text" id="title-input" name="film_title"><br>
-
-			  
-              Film Description: <input type="text" id="film-desc" name="film_description"><br>
+          <form action="http://localhost:8080/CyberFlix0/CyberFlixAddServlet" method="get">
               
-
-              Film Rating: 
-                <select name="ratings" id="select-button">
-                <option value="1">G</option>
-                <option value="2">PG</option>
-                <option value="3">PG-13</option>
-                <option value="4">R</option>
-              </select>
-              <br>
-
-              Runtime:
-              <input type="checkbox" name="run_time" value="30"> 30 
-              <input type="checkbox" name="run_time" value="60"> 60 
-              <input type="checkbox" name="run_time" value="90"> 90 
-              <input type="checkbox" name="run_time" value="120"> 120 
-              <input type="checkbox" name="run_time" value="150"> 150 
-              <input type="checkbox" name="run_time" value="200"> 200+ 
-              <input type="checkbox" name="run_time" value="1000"> any<br><br>
-
-            <input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="Search">
-            </form>
+			<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="NO" name="addFilm" style="position: absolute; left: 0; bottom: 0">
+          	<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="YES" name="addFilm">
+          </form>
         </div>
       </div>
     </div>

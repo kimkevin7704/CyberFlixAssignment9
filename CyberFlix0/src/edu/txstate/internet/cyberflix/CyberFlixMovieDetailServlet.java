@@ -39,27 +39,6 @@ public class CyberFlixMovieDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		FilmCatalog catalog    = FilmCatalog.getInstance();
-//		
-//		String      filmIDStr  = request.getParameter("film_id");
-//		int         filmID     = Integer.valueOf(filmIDStr);
-//		Film        film       = catalog.get(filmID);
-//		
-//		Connection conn = null;
-//		conn = DAO.getDBConnection();
-//		FilmDAO filmDAO = new FilmDAO();
-//		Film detailFilm = null;
-//
-//		detailFilm = filmDAO.getFilmDetail(film);
-//		
-//		film.setActorsString(film.getActors());
-//		request.setAttribute("film", detailFilm);
-//		
-//
-//		request.getRequestDispatcher("MovieDetails.jsp").forward(request, response);
-//	
-		
 		try {
 			ActorDAO actorDAO = new ActorDAO();
 			Connection conn = DAO.getDBConnection();
