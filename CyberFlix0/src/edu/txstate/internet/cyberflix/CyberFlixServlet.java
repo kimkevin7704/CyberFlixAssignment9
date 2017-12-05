@@ -16,6 +16,7 @@ import java.sql.*;
 
 import edu.txstate.internet.cyberflix.data.DataSource;
 import edu.txstate.internet.cyberflix.data.film.Film;
+import edu.txstate.internet.cyberflix.data.film.Film.FilmRating;
 import edu.txstate.internet.cyberflix.utils.ServletUtils;
 import edu.txstate.internet.cyberflix.utils.HTMLTags;
 import edu.txstate.internet.cyberflix.data.db.*;
@@ -43,12 +44,6 @@ public class CyberFlixServlet extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		ServletUtils.setAbsolutePath(config);
-		
-	    conn = null;
-	    conn = DAO.getDBConnection();
-		FilmDAO filmDAO = new FilmDAO();
-		List<Film> n = new ArrayList<Film>();
-		n = filmDAO.findNewestFilms(5);
 
 		
 	}
@@ -60,14 +55,20 @@ public class CyberFlixServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-	    conn = null;
-	    conn = DAO.getDBConnection();
-		FilmDAO filmDAO = new FilmDAO();
-		List<Film> n = new ArrayList<Film>();
-		n = filmDAO.findNewestFilms(5);
-		PrintWriter writer = response.getWriter();
+	FilmDAO filmDAO = new FilmDAO();
+	List<Film> found = new ArrayList<Film>();
 		
-		writer.println(n);
+		request.setAttribute("detailServlet", "http://localhost:8080/CyberFlixOne/CyberFlixMovieDetailServlet");
+		String title = request.getParameter("film_title");
+	    String descript = request.getParameter("film_description");
+		int length = Integer.parseInt(request.getParameter("run_time"));
+	    FilmRating rating = FilmRating.values()[Integer.valueOf(request.getParameter("ratings"))];
+		found = filmDAO.findFilmsByAttributes(title, descript, length, rating);
+		
+		request.setAttribute("films", found);
+		request.getRequestDispatcher("MovieSearchResults.jsp").forward(request, response);
+		
+
 		
 		
 	}
