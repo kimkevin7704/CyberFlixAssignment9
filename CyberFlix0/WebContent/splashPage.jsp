@@ -102,7 +102,6 @@ for (int i = 4; i < n.size(); i++)
 		          <form action="http://localhost:8080/CyberFlix0/CyberFlixAddServlet" method="get">
     			    <input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="<%=var%>" name="filmIDToAdd" >
 					<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="NO" name="addFilm" style="position: absolute; left: 0; bottom: 0">
-		          	<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="YES" name="addFilm">
 		          </form>
 		        </div>
 		      </div>
@@ -118,7 +117,7 @@ for (int i = 4; i < n.size(); i++)
 	if(CyberFlixLoginServlet.isLogged)
 	{
 %>	
-	<a id='cartimage' href="cartCheckOut.jsp">
+	<a id="cartimage" href="cartCheckOut.jsp">
 		<img src='images/cart.png'>
 	</a>
 <%
@@ -253,7 +252,7 @@ for (int i = 4; i < n.size(); i++)
               <input type="checkbox" name="run_time" value="120"> 120 
               <input type="checkbox" name="run_time" value="150"> 150 
               <input type="checkbox" name="run_time" value="200"> 200+ 
-              <input type="checkbox" name="run_time" value="1000"> any<br><br>
+              <input type="checkbox" name="run_time" checked value="1000"> any<br><br>
 
             <input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="Search">
             </form>

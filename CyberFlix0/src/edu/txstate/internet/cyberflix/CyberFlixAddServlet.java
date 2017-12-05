@@ -39,6 +39,8 @@ public class CyberFlixAddServlet extends HttpServlet {
 		
 			
 			String addFilmID = request.getParameter("filmIDToAdd");
+			if(addFilmID == null)
+			{
 			try {
 			Connection conn = DAO.getDBConnection();
 			Statement statement = conn.createStatement();
@@ -62,7 +64,8 @@ public class CyberFlixAddServlet extends HttpServlet {
 		//	request.getRequestDispatcher("splashPage.jsp").forward(request, response);
 			} catch (SQLException e) {
 
-		}
+			}
+			}
 
 			//go back to screen
 			request.getRequestDispatcher("splashPage.jsp").forward(request, response);
