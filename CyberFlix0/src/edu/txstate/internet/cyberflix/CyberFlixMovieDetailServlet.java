@@ -45,11 +45,12 @@ public class CyberFlixMovieDetailServlet extends HttpServlet {
 		conn = DAO.getDBConnection();
 		FilmDAO filmDAO = new FilmDAO();
 		Film detailFilm = null;
+
+		detailFilm = filmDAO.getFilmDetail(film);
 		
 		film.setActorsString(film.getActors());
 		request.setAttribute("film", detailFilm);
 		
-		detailFilm = filmDAO.getFilmDetail(film);
 
 		request.getRequestDispatcher("MovieDetails.jsp").forward(request, response);
 		

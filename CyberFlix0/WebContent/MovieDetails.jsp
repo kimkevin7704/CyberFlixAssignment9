@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>  
-<%@page import="java.util.List, java.util.ArrayList, edu.txstate.internet.cyberflix.data.film.*, edu.txstate.internet.cyberflix.data.db.FilmDAO, java.sql.*, edu.txstate.internet.cyberflix.data.db.DAO "%>
+<%@page import="java.util.List, java.util.ArrayList, edu.txstate.internet.cyberflix.data.film.*, 
+edu.txstate.internet.cyberflix.data.db.FilmDAO, java.sql.*, 
+edu.txstate.internet.cyberflix.data.db.DAO "%>   
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyberflix</title>
 
 <!-- Custom Stylesheet -->
 <link rel="stylesheet" href="Style/style.css">
@@ -19,41 +19,31 @@
 <!-- Google Fonts CSS -->
 <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>${film.title}</title>
 </head>
-
-<%
-	Connection conn = null;
-	conn = DAO.getDBConnection();
-	FilmDAO filmDAO = new FilmDAO();
-	film.getTitle(filmID);
-%>
-
 <body>
-
-  <div id="titleposition" class="w3-display-topmiddle w3-animate-opacity">
-    <div id="titlesmall"><a href="splashPage.jsp">C Y B E R F L I X</a></div>
+  <div class="w3-display-topmiddle w3-animate-opacity">
+    <div id="title"><a href="splashPage.jsp">C Y B E R F L I X</a></div>
   </div>
   
- <div id="cardcontainer" class="w3-container" style="margin-top: 5%; margin-bottom: 5%;">
-<c:forEach var="film" items="${film}">
-<div class="w3-row">
-  <div id="movie-cards" class="w3-container w3-col s8" style="-webkit-margin-before: 3%;">
-  <div class="w3-card-4">
-    <div class="w3-container w3-light-grey">
-      <h3 style="border-bottom-style:ridge;">${film.title}    <small><i>(${film.releaseYear}) </i></small></h3>
-    </div>
-    <div class="w3-container" style="background-color:white;">
-   	  <p>Rating:<b> ${film.rating}</b></p>
-      <p>${film.description}</p>
-    </div>
-      <a href=${detailServlet}${film.filmID}><button class="w3-button w3-block w3-dark-grey">Select</button></a>
-    </div>
+<div id="detailinfo" class="w3-display-topmiddle" style="margin-top:10%;">
+    <div class="w3-card-4 w3-center" style="background-color:white">
+    <h2 class="w3-container w3-black"><i>${film.title}</i></h2>
+    <img class="w3-round" src="Images/movie2.jpeg">
+    <hr>
+    <p id="description" class="lead" style="margin:5%"]>${film.description}</p>
+    <hr>
+    <ul>
+      <li class="w3-left-align"><b>Rating: </b>${film.rating}</li>
+      <li class="w3-left-align"><b>Release Year: </b>${film.releaseYear}</li>
+      <li class="w3-left-align"><b>Runtime: </b>${film.length} minutes</li>
+      <li class="w3-left-align"><b>Cast: </b>${film.actors}</li>
+    </ul>
   </div>
-      <div class="w3-col s4">
-    	<a href=${detailServlet}${film.filmID}><img id="image" src="Images/movie3.jpg"></a>
-    </div>
 </div>
-</c:forEach>
-</div>
+
 </body>
 </html>
