@@ -14,11 +14,11 @@
 	<h1>Movies Matching Your Search</h1>
 	<div class="w3-container">
 		<c:forEach items="${films}" var="film">
-			<div class="w3-card-4" style="column-count: 2; column-gap: 40px">
+			<div class="w3-card-4" style="column-count: 2; column-gap: 40px; background: white">
 				<a href="${detailServlet}?film_id=${film.filmID}">
   					<img src="http://localhost:8080/CyberFlix0/images/3.jpg" style="float:left; height: 300px; width: 200px">
   				</a>
-  				<div>
+  				<div id="card-info" style="margin-left:30%">
 					<h3><b>${film.title}</b></h3><br>
 					<b> Year: </b>${film.releaseYear} <br><br>
 					<b> Rating: </b>${film.rating} <br><br>
