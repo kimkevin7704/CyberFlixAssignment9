@@ -60,6 +60,7 @@ public class CyberFlixAddServlet extends HttpServlet {
 			
 			Film filmToAdd = new Film(filmID, title, description, releaseYear, length, rawRating);
 			CyberFlixLoginServlet.cart.addToCart(filmToAdd);
+			request.getRequestDispatcher("splashPage.jsp").forward(request, response);
 			} catch (SQLException e) {
 			}
 		}

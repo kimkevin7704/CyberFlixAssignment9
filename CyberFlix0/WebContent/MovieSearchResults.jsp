@@ -26,6 +26,23 @@
 					${film.description}
 
 				</div>
+				<button id='searchResultAddButton' onclick="document.getElementById('searchResultAddButton').style.display='block'" class="w3-button w3-round-large">ADD TO CART</button>  
+    
+			    <div id= "searchAdd" class="w3-modal w3-display-middle">
+			      <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-middle">
+			        <header class="w3-container w3-black"> 
+			              <p><b>Add This Film To Cart?</b></p>
+			          </header>
+			
+			        <div class="w3-container">
+			          <form action="http://localhost:8080/CyberFlix0/CyberFlixAddServlet" method="get">
+			            <div id='addFilmID' name='filmIDToAdd' value='${film.film_id}'></div>
+						<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="NO" name="addFilm" style="position: absolute; left: 0; bottom: 0">
+			          	<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="YES" name="addFilm">
+			          </form>
+			        </div>
+			      </div>
+			    </div>
 			</div>
 			<br><br>
 		</c:forEach>

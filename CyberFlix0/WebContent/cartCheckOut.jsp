@@ -11,7 +11,7 @@
 	<title>Cart Checkout</title>
 </head>
 <body>
-	<h1>What's in your cart?</h1>
+	<h1><b>What's in your cart?</b></h1>
 	<div class="w3-container">
 		<%
 			for(int i = 0; i < CyberFlixLoginServlet.cart.getTotalItems(); i++)
