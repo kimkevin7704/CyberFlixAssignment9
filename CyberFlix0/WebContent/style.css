@@ -127,3 +127,7 @@ a:link    {
 ul {
 	padding-bottom: 3%;
 }
+
+div.#card-info {
+	margin-left: 30%;
+}
