@@ -58,7 +58,7 @@ public class CyberFlixServlet extends HttpServlet {
 	FilmDAO filmDAO = new FilmDAO();
 	List<Film> found = new ArrayList<Film>();
 		
-		request.setAttribute("detailServlet", "http://localhost:8080/CyberFlixOne/CyberFlixMovieDetailServlet");
+		request.setAttribute("detailServlet", "http://localhost:8080/CyberFlix0/CyberFlixMovieDetailServlet");
 		String title = request.getParameter("film_title");
 	    String descript = request.getParameter("film_description");
 		int length = Integer.parseInt(request.getParameter("run_time"));
