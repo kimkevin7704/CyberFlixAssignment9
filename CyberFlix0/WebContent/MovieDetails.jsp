@@ -4,7 +4,7 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>  
 <%@page import="java.util.List, java.util.ArrayList, edu.txstate.internet.cyberflix.data.film.*, 
 edu.txstate.internet.cyberflix.data.db.FilmDAO, java.sql.*, 
-edu.txstate.internet.cyberflix.data.db.DAO, edu.txstate.internet.cyberflix.data.actor.*"%>   
+edu.txstate.internet.cyberflix.data.db.DAO, edu.txstate.internet.cyberflix.data.actor.*, edu.txstate.internet.cyberflix.*"%>   
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,6 +42,12 @@ edu.txstate.internet.cyberflix.data.db.DAO, edu.txstate.internet.cyberflix.data.
       <li class="w3-left-align"><b>Runtime: </b>${film.length} minutes</li>
       <li class="w3-left-align"><b>Cast: </b>${actors}</li>
     </ul>
+	
+<%
+	if(CyberFlixLoginServlet.isLogged)
+	{
+%>	
+	
 	<button id='detail-button' onclick="document.getElementById('detailAdd').style.display='block'" class="w3-button w3-round-large">ADD TO CART</button>  
     
     <div id= "detailAdd" class="w3-modal w3-display-middle">
@@ -53,12 +59,15 @@ edu.txstate.internet.cyberflix.data.db.DAO, edu.txstate.internet.cyberflix.data.
         <div class="w3-container">
           <form action="http://localhost:8080/CyberFlix0/CyberFlixAddServlet" method="get">
 			<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="NO" name="addFilm" style="position: absolute; left: 0; bottom: 0">
+          	<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="${film.filmID}" name="filmIDToAdd" style="visibility:hidden">
           	<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="YES" name="addFilm">
           </form>
         </div>
       </div>
     </div>
-    
+<%
+	}
+%>
     </div>
 </div>
 

@@ -37,14 +37,13 @@ public class CyberFlixAddServlet extends HttpServlet {
 		
 		
 		
-		String addFilm = request.getParameter("addFilm");
-		if(addFilm == "YES")
-		{
+			
 			String addFilmID = request.getParameter("filmIDToAdd");
 			try {
 			Connection conn = DAO.getDBConnection();
 			Statement statement = conn.createStatement();
 			String statementString = "SELECT film.film_id, film.title, film.description, film.length, film.rating, film.release_year FROM film WHERE film.film_id = " + addFilmID;
+			System.out.println("SQL STATEMENT" + statementString);
 			ResultSet result = statement.executeQuery(statementString);
 			int length, filmID;
 			String title, description, releaseYear, rating;
@@ -60,17 +59,15 @@ public class CyberFlixAddServlet extends HttpServlet {
 			
 			Film filmToAdd = new Film(filmID, title, description, releaseYear, length, rawRating);
 			CyberFlixLoginServlet.cart.addToCart(filmToAdd);
-			request.getRequestDispatcher("splashPage.jsp").forward(request, response);
+		//	request.getRequestDispatcher("splashPage.jsp").forward(request, response);
 			} catch (SQLException e) {
-			}
+
 		}
-		else
-		{
+
 			//go back to screen
 			request.getRequestDispatcher("splashPage.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher("MovieSearchResults.jsp").forward(request, response);			
-	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -24,7 +24,7 @@
 					<b> Rating: </b>${film.rating} <br><br>
 					<b> Running Time: </b> ${film.length} minutes<br><br> 
 					${film.description}
-
+				</div>
 				</div>
 		<%
 			if(CyberFlixLoginServlet.isLogged)
@@ -41,13 +41,12 @@
 			        <div class="w3-container">
 			          <form action="http://localhost:8080/CyberFlix0/CyberFlixAddServlet" method="get">
 						<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="NO" name="addFilm" style="position: absolute; left: 0; bottom: 0">
-			            <input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="${film.filmID}" name="addFilm" style="visibility:hidden">
+			            <input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="${film.filmID}" name="filmIDToAdd" style="visibility:hidden">
 			          	<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="YES" name="addFilm">
 			          </form>
 			        </div>
 			      </div>
 			    </div>
-			</div>
 		<%
 			}
 		%>

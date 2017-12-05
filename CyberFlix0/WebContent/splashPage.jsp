@@ -89,30 +89,41 @@ for (int i = 4; i < n.size(); i++)
 	if(CyberFlixLoginServlet.isLogged)
 	{
 %>	
-	    <button id="cart-button<%=i%>" onclick="document.getElementById('cart').style.display='block'" type="button" style="position: relative; right: 0; bottom: 0">Add To Cart</button>
+	    <button id="cart-button<%=i%>" name="cartButton" value="<%=var%>" onclick="document.getElementById('cart').style.display='block'" type="button" style="position: relative; right: 0; bottom: 0">Add To Cart</button>
+		<!-- cart button -->	
+		<div id="cart" class="w3-modal w3-display-middle">
+		      <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-middle">
+		
+		        <header class="w3-container w3-black"> 
+		              <p><b>Add This Film To Cart?</b></p>
+		          </header>
+		
+		        <div class="w3-container">
+		          <form action="http://localhost:8080/CyberFlix0/CyberFlixAddServlet" method="get">
+    			    <input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="<%=var%>" name="filmIDToAdd" >
+					<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="NO" name="addFilm" style="position: absolute; left: 0; bottom: 0">
+		          	<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="YES" name="addFilm">
+		          </form>
+		        </div>
+		      </div>
+		    </div>
 <%
 	}
 %>    
 </div>
 <%} %>
 </div>
-<!-- cart button -->	
-<div id="cart" class="w3-modal w3-display-middle">
-      <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-middle">
-
-        <header class="w3-container w3-black"> 
-              <p><b>Add This Film To Cart?</b></p>
-          </header>
-
-        <div class="w3-container">
-          <form action="http://localhost:8080/CyberFlix0/CyberFlixAddServlet" method="get">
-			<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="NO" name="addFilm" style="position: absolute; left: 0; bottom: 0">
-          	<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="YES" name="addFilm">
-          </form>
-        </div>
-      </div>
-    </div>
-
+		
+<% 
+	if(CyberFlixLoginServlet.isLogged)
+	{
+%>	
+	<a id='cartimage' href="cartCheckOut.jsp">
+		<img src='images/cart.png'>
+	</a>
+<%
+	}
+%>
     <!-- Find a film button -->
     <div class="w3-row w3-center">
       <div class="w3-col s1 m3 l4"><p></p></div>
