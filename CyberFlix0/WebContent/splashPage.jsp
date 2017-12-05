@@ -15,7 +15,7 @@ edu.txstate.internet.cyberflix.data.db.DAO "%>
 <body>
 
 	<h1> Welcome to CyberFlix!</h1>
-	<h2><a href="Login.html">Login</a> <a href="register.html">Register</a></h2>
+	<h2><a href="Login.html">Login</a></h2>
 <p>
 <p>
 <form action="http://localhost:8080/CyberFlix0/CyberFlixServlet" method="get">
