@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@page import="java.util.List"%>    
+<%@page import="java.util.List, edu.txstate.internet.cyberflix.*"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,6 +26,10 @@
 					${film.description}
 
 				</div>
+		<%
+			if(CyberFlixLoginServlet.isLogged)
+			{
+		%>
 				<button id='searchResultAddButton' onclick="document.getElementById('searchResultAddButton').style.display='block'" class="w3-button w3-round-large">ADD TO CART</button>  
     
 			    <div id= "searchAdd" class="w3-modal w3-display-middle">
@@ -36,14 +40,17 @@
 			
 			        <div class="w3-container">
 			          <form action="http://localhost:8080/CyberFlix0/CyberFlixAddServlet" method="get">
-			            <div id='addFilmID' name='filmIDToAdd' value='${film.film_id}'></div>
 						<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="NO" name="addFilm" style="position: absolute; left: 0; bottom: 0">
+			            <input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="${film.filmID}" name="addFilm" style="visibility:hidden">
 			          	<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="YES" name="addFilm">
 			          </form>
 			        </div>
 			      </div>
 			    </div>
 			</div>
+		<%
+			}
+		%>
 			<br><br>
 		</c:forEach>
 	</div>
