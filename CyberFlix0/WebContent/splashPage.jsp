@@ -77,8 +77,14 @@ for (int i = 4; i < n.size(); i++)
 %>
 <div class="w3-col m3 w3-center w3-hover-opacity">
 	<a href="http://localhost:8080/CyberFlix0/CyberFlixMovieDetailServlet?film_id=<%=var%>">
-		<img style='max-height: 50%; max-width: 50%%; object-fit: contain' src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg">
+		<img style='max-height: 50%; width: 100%; object-fit: contain' src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg">
 	</a>
+	  
+	
+	
+	
+	
+	
 <% 
 	if(CyberFlixLoginServlet.isLogged)
 	{
@@ -88,8 +94,6 @@ for (int i = 4; i < n.size(); i++)
 	}
 %>    
 </div>
-<!-- <div class="w3-col s1 m3 l4"><p></p></div> -->
-
 <%} %>
 </div>
 <!-- cart button -->	
@@ -123,7 +127,7 @@ for (int i = 4; i < n.size(); i++)
     <div class="w3-row w3-right">
     <div class="w3-col s1 m3 l4"><p></p></div>
       <div class="w3-col s10 m6 l4">
-        <button id='alphabet-button' onclick="document.getElementById('alphabetSearch').style.display='block'" class="w3-button w3-round-large">Find a Film by Alphabet
+        <button id='alphabet-button' onclick="document.getElementById('alphabetSearch').style.display='block'" class="w3-button w3-round-large">Browse Alphabetically
         </button>
       </div>
       <div class="w3-col s1 m3 l4"><p></p></div>
@@ -131,7 +135,7 @@ for (int i = 4; i < n.size(); i++)
     
     <!-- alphabet search box -->
     <div id="alphabetSearch" class="w3-modal w3-display-right">
-      <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-right">
+      <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-middle">
 
         <header class="w3-container w3-black"> 
               <p><b>Search CyberFlix by Alphabet</b></p>
@@ -169,7 +173,7 @@ for (int i = 4; i < n.size(); i++)
     </div>
     
     <!-- category search box -->
-    <div id="catSearch" class="w3-modal w3-display-left">
+    <div id="catSearch" class="w3-modal w3-display-middle">
       <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-left">
 
         <header class="w3-container w3-black"> 
@@ -251,20 +255,24 @@ for (int i = 4; i < n.size(); i++)
 <script>
 // Get the modal
 var modalVar = document.getElementById('modal');
-var alphaVar = document.getElementById('alphabetSearch');
-var cartVar = document.getElementById('cart');
+// var alphaVar = document.getElementById('alphabetSearch');
+// var catVar = document.getElementByID('catSearch')
+// var cartVar = document.getElementById('cart');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modalVar) {
         modalVar.style.display = "none";
     }
-    if (event.target == alphaVar) {
-    	alphaVar.style.display = "none";
-    }
-    if (event.target == cart) {
-    	cartVar.style.display = "none";
-    }
+//     else if (event.target == alphaVar) {
+//     	alphaVar.style.display = "none";
+//     }
+//     else if (event.target == cartVar) {
+//     	cartVar.style.display = "none";
+//     }
+//     else if (event.target == cartVar) {
+//     	catVar.style.display = "none";
+//     }
 }
 </script>
 
