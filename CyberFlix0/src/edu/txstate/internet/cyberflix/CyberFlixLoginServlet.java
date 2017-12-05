@@ -2,12 +2,14 @@ package edu.txstate.internet.cyberflix;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.txstate.internet.cyberflix.data.db.*;
 import edu.txstate.internet.cyberflix.*;
@@ -16,8 +18,10 @@ import edu.txstate.internet.cyberflix.*;
  * Servlet implementation class CyberFlixLoginServlet
  */
 @WebServlet("/CyberFlixLoginServlet")
-public class CyberFlixLoginServlet extends HttpServlet {
+public class CyberFlixLoginServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+	public static boolean isLogged = false;
+	public CartManager topCartManager;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,7 +36,6 @@ public class CyberFlixLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter writer = response.getWriter();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
         Customer target; 
@@ -41,16 +44,40 @@ public class CyberFlixLoginServlet extends HttpServlet {
         {  
         	if (password.equals(target.getPassword()))
         	{
-        	     writer.println("Login Success");
+        		isLogged = true;
+        		HttpSession session = request.getSession();
+        		Cart cart = null;
+        		try {
+					if(topCartManager.carts.size() <= 0)
+	        		{
+	        			cart = new Cart(email, session);
+	        			topCartManager.addCart(cart);
+	        		}
+	        		else
+	        		{
+	        			cart = topCartManager.getCart(session, isLogged);        			
+	        		}
+        		}catch (Exception e) {
+        		}
+        		session.setAttribute("cart", cart);
+        		session.setAttribute("sessionID", session);
+        		session.setAttribute("email", email);
+        		request.getRequestDispatcher("splashPage.jsp").forward(request, response);
         	}
         	else
         	{
-        		writer.println("Wrong Password");
+        		isLogged = false;
+        		request.setAttribute("isLogged", false);
+        		request.getRequestDispatcher("login.jsp").forward(request, response);
+        		//send back to log in page
         	}
         }
         else
         {
-        	writer.println("Not in system.");
+        	isLogged = false;
+        	request.setAttribute("isLogged", false);
+        	request.getRequestDispatcher("login.jsp").forward(request, response);
+        	//send back to log in page
         }
         	
 	}

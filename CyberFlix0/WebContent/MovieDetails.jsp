@@ -34,7 +34,7 @@ edu.txstate.internet.cyberflix.data.db.DAO, edu.txstate.internet.cyberflix.data.
     <h2 class="w3-container w3-black"><i>${film.title}</i></h2>
     <img class="w3-round" src="images/2.jpg">
     <hr>
-    <p id="description" class="lead" style="margin:5%"]>${film.description}</p>
+    <p id="description" class="lead" style="margin:5%">${film.description}</p>
     <hr>
     <ul>
       <li class="w3-left-align"><b>Rating: </b>${film.rating}</li>

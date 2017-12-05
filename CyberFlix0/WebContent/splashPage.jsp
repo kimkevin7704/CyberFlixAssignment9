@@ -2,9 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>  
-<%@page import="java.util.List, java.util.ArrayList, edu.txstate.internet.cyberflix.data.film.*, 
-edu.txstate.internet.cyberflix.data.db.FilmDAO, java.sql.*, 
-edu.txstate.internet.cyberflix.data.db.DAO "%>   
+<%@page import="java.util.List, java.util.ArrayList, edu.txstate.internet.cyberflix.*, 
+edu.txstate.internet.cyberflix.data.db.*, java.sql.*, edu.txstate.internet.cyberflix.data.film.*"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,8 +28,17 @@ edu.txstate.internet.cyberflix.data.db.DAO "%>
     <div class="w3-row w3-left w3-animate-opacity">
       <div class="w3-col s12" id="title">C Y B E R F L I X</div>
     </div>
+    <% 
+	if(CyberFlixLoginServlet.isLogged)
+	{
+	String userEmailString = session.getAttribute("email").toString();
+%>
+	Welcome, <%=userEmailString%>!
+<%
+	}
+%>
     <div id="login-icon" class="w3-right">
-      <a href="Login.html" title="login page"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+      <a href="login.jsp" title="login page"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
     </div>
   </div>
 
@@ -56,11 +64,70 @@ int var = n.get(i).getFilmID();
 <%
 for (int i = 4; i < n.size(); i++)
 {
-int var = n.get(i).getFilmID();
+	int var = n.get(i).getFilmID();
 %>
-<div class="w3-col m3 w3-center w3-hover-opacity"><a href="http://localhost:8080/CyberFlix0/CyberFlixMovieDetailServlet?film_id=<%=var%>"><img style="width: 100%" src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg"></a></div>
+<div class="w3-col m3 w3-center w3-hover-opacity">
+	<a href="http://localhost:8080/CyberFlix0/CyberFlixMovieDetailServlet?film_id=<%=var%>">
+		<img style="width: 100%" src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg">
+	</a>
+<% 
+	if(CyberFlixLoginServlet.isLogged)
+	{
+%>	
+		<div class="w3-row w3-center">
+	    	<div class="w3-col s1 m3 l4"><p></p></div>
+	      		<div class="w3-col s10 m6 l4">
+	        		<button id='cart-button' onclick="document.getElementById('cart').style.display='block'" class="w3-button w3-round-large" style="position: absolute; right: 0; bottom: 0">Add 2 Cart
+	        		</button>
+	      		</div>
+	      	<div class="w3-col s1 m3 l4"><p></p></div>
+	    </div>
+<%
+	}
+%>    
+</div>
 <%} %>
 </div>
+
+<!-- cart button -->	
+<div id="cart" class="w3-modal w3-display-middle">
+      <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-middle">
+
+        <header class="w3-container w3-black"> 
+              <p><b>Add This Film To Cart?</b></p>
+          </header>
+
+        <div class="w3-container">
+          <form action="http://localhost:8080/CyberFlix0/CyberFlixServlet" method="get">
+              Film Title: <input type="text" id="title-input" name="film_title"><br>
+
+			  
+              Film Description: <input type="text" id="film-desc" name="film_description"><br>
+              
+
+              Film Rating: 
+                <select name="ratings" id="select-button">
+                <option value="1">G</option>
+                <option value="2">PG</option>
+                <option value="3">PG-13</option>
+                <option value="4">R</option>
+              </select>
+              <br>
+
+              Runtime:
+              <input type="checkbox" name="run_time" value="30"> 30 
+              <input type="checkbox" name="run_time" value="60"> 60 
+              <input type="checkbox" name="run_time" value="90"> 90 
+              <input type="checkbox" name="run_time" value="120"> 120 
+              <input type="checkbox" name="run_time" value="150"> 150 
+              <input type="checkbox" name="run_time" value="200"> 200+ 
+              <input type="checkbox" name="run_time" value="1000"> any<br><br>
+
+            <input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="Search">
+            </form>
+        </div>
+      </div>
+    </div>
 
     <!-- Find a film button -->
     <div class="w3-row w3-center">
@@ -83,8 +150,8 @@ int var = n.get(i).getFilmID();
     </div>
     
     <!-- alphabet search box -->
-    <div id="alphabetSearch" class="w3-modal w3-display-middle">
-      <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-middle">
+    <div id="alphabetSearch" class="w3-modal w3-display-right">
+      <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-right">
 
         <header class="w3-container w3-black"> 
               <p><b>Search CyberFlix by Alphabet</b></p>
@@ -102,6 +169,54 @@ int var = n.get(i).getFilmID();
                 %>
                 	<option value='<%=i%>'><%=alphabet.charAt(i)%></option>
                 	<% }%>
+              </select>
+              <br>
+
+            <input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="Search">
+            </form>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Find film by Category button -->
+    <div class="w3-row w3-left">
+    <div class="w3-col s1 m3 l4"><p></p></div>
+      <div class="w3-col s10 m6 l4">
+        <button id='cat-button' onclick="document.getElementById('catSearch').style.display='block'" class="w3-button w3-round-large">Find a Film by Category
+        </button>
+      </div>
+      <div class="w3-col s1 m3 l4"><p></p></div>
+    </div>
+    
+    <!-- alphabet search box -->
+    <div id="catSearch" class="w3-modal w3-display-left">
+      <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-left">
+
+        <header class="w3-container w3-black"> 
+              <p><b>Search CyberFlix by Category</b></p>
+          </header>
+
+        <div class="w3-container">
+          <form action="http://localhost:8080/CyberFlix0/CyberFlixCatServlet" method="get">
+
+              Film Category: 
+                <select name="category" id="select-button3">
+                <option value="1">ACTION</option>
+                <option value="2">ANIMATION</option>
+                <option value="3">CHILDREN</option>
+                <option value="4">CLASSICS</option>
+                <option value="5">COMEDY</option>
+                <option value="6">DOCUMENTARY</option>
+                <option value="7">DRAMA</option>
+                <option value="8">FAMILY</option>
+                <option value="9">FOREIGN</option>
+                <option value="10">GAMES</option>
+                <option value="11">HORROR</option>
+                <option value="12">MUSIC</option>
+                <option value="13">NEW</option>
+                <option value="14">SCI_FI</option>
+                <option value="15">SPORTS</option>
+                <option value="16">TRAVEL</option>
               </select>
               <br>
 
@@ -157,6 +272,7 @@ int var = n.get(i).getFilmID();
 // Get the modal
 var modalVar = document.getElementById('modal');
 var alphaVar = document.getElementById('alphabetSearch');
+var cartVar = document.getElementById('cart');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {

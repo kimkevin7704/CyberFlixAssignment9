@@ -95,13 +95,10 @@ public class FilmDAO extends DAO {
 	{
 		List <Film> films = new ArrayList <Film>();
 		try {
-			Statement statement = Driver.conn.createStatement();
-			String statementString;
-			StringBuilder stringBuilder = new StringBuilder(FILM_SELECT_STRING);
-			stringBuilder.append(CATEGORY_CLAUSES);
-			stringBuilder.append(category.ordinal());
-			statementString = stringBuilder.toString();
-			
+			Connection cn = DAO.getDBConnection();
+			Statement statement = cn.createStatement();
+			String statementString = FILM_SELECT_STRING + " FROM film, film_category WHERE film.film_id = film_category.film_id AND film_category.category_id =" + category.ordinal();
+			System.out.println(statementString);
 			ResultSet result = statement.executeQuery(statementString);
 
 			while(result.next())
