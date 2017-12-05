@@ -18,10 +18,7 @@ edu.txstate.internet.cyberflix.data.db.DAO "%>
 	<h2><a href="Login.html">Login</a></h2>
 <p>
 <p>
-<form action="http://localhost:8080/CyberFlix0/CyberFlixServlet" method="get">
-  Film Title: <input type="text" name="film_title"><br>
-  <input type="submit" value="Submit">
-</form>
+
 
 <%
     Connection conn = null;

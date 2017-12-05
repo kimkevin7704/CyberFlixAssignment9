@@ -15,7 +15,7 @@
 		<c:forEach items="${films}" var="film">
 			<div class="w3-card-4" style="column-count: 2; column-gap: 40px">
 				<a href="http://localhost:8080/CyberFlix0/CyberFlixMovieDetailServlet?film_id=${film.filmID}">
-  					<img src="http://localhost:8080/CyberFlix0/images/${film.posterImage}" alt="${films}" style="float:left; height: 300px; width: 200px">
+  					<img src="http://localhost:8080/CyberFlix0/images/3.jpg" style="float:left; height: 300px; width: 200px">
   				</a>
   				<div>
 					<h3><b>${film.title}</b></h3><br>
@@ -23,6 +23,7 @@
 					<b> Rating: </b>${film.rating} <br><br>
 					<b> Running Time: </b> ${film.length} minutes<br><br> 
 					${film.description}
+
 				</div>
 			</div>
 			<br><br>
