@@ -167,7 +167,7 @@ for (int i = 4; i < n.size(); i++)
       <div class="w3-col s1 m3 l4"><p></p></div>
     </div>
     
-    <!-- alphabet search box -->
+    <!-- category search box -->
     <div id="catSearch" class="w3-modal w3-display-left">
       <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-left">
 
@@ -260,6 +260,9 @@ window.onclick = function(event) {
     }
     if (event.target == alphaVar) {
     	alphaVar.style.display = "none";
+    }
+    if (event.target == cart) {
+    	cartVar.style.display = "none";
     }
 }
 </script>

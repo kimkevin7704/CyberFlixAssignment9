@@ -21,7 +21,8 @@ import edu.txstate.internet.cyberflix.*;
 public class CyberFlixLoginServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	public static boolean isLogged = false;
-	public CartManager topCartManager;
+	public static CartManager topCartManager;
+	public static Cart cart;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,7 +47,7 @@ public class CyberFlixLoginServlet extends HttpServlet{
         	{
         		isLogged = true;
         		HttpSession session = request.getSession();
-        		Cart cart = null;
+        		cart = null;
         		try {
 					if(topCartManager.carts.size() <= 0)
 	        		{
