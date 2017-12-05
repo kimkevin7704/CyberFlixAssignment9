@@ -1,6 +1,7 @@
 package edu.txstate.internet.cyberflix;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,10 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.PrintWriter;
+import java.sql.*;
 
-import edu.txstate.internet.cyberflix.data.film.Film;
-import edu.txstate.internet.cyberflix.data.film.FilmCatalog;
+import edu.txstate.internet.cyberflix.data.film.*;
 import edu.txstate.internet.cyberflix.utils.HTMLTags;
+import edu.txstate.internet.cyberflix.data.db.*;
 
 /**
  * Servlet implementation class CyberFlixMovieDetailServlet
@@ -39,9 +41,18 @@ public class CyberFlixMovieDetailServlet extends HttpServlet {
 		int         filmID     = Integer.valueOf(filmIDStr);
 		Film        film       = catalog.get(filmID);
 		
+		Connection conn = null;
+		conn = DAO.getDBConnection();
+		FilmDAO filmDAO = new FilmDAO();
+		Film detailFilm = null;
+		
 		film.setActorsString(film.getActors());
-		request.setAttribute("film", film);
+		request.setAttribute("film", detailFilm);
+		
+		detailFilm = filmDAO.getFilmDetail(film);
+
 		request.getRequestDispatcher("MovieDetails.jsp").forward(request, response);
+		
 	}
 
 	/**
