@@ -10,7 +10,7 @@ edu.txstate.internet.cyberflix.data.db.DAO, edu.txstate.internet.cyberflix.data.
 <html>
 
 <!-- Custom Stylesheet -->
-<link rel="stylesheet" href="Style/style.css">
+<link rel="stylesheet" href="style.css">
 <!-- W3 Schools CSS -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <!-- Bootstrap CSS -->
