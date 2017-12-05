@@ -59,10 +59,9 @@ public class CyberFlixAddServlet extends HttpServlet {
 			rawRating = FilmFactory.convert(rating);
 			
 			Film filmToAdd = new Film(filmID, title, description, releaseYear, length, rawRating);
-			
+			CyberFlixLoginServlet.cart.addToCart(filmToAdd);
 			} catch (SQLException e) {
 			}
-			//add movie to cart from cart manager
 		}
 		else
 		{

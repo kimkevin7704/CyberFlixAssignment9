@@ -3,6 +3,7 @@ package edu.txstate.internet.cyberflix.data.film;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.txstate.internet.cyberflix.CyberFlixLoginServlet;
 import edu.txstate.internet.cyberflix.data.actor.Actor;
 
 public class Film {
@@ -42,6 +43,11 @@ public class Film {
 		this.length = length;
 		this.rating = rating;
 		this.actors = actors;
+	}
+	
+	public Film()
+	{
+		
 	}
 	
 	public void addActor (Actor anActor) {

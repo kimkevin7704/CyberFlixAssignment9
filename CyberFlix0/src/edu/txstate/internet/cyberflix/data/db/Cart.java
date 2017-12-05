@@ -82,4 +82,10 @@ public class Cart extends CartManager{
 	{
 		return sessionID;
 	}
+	
+	public Film getFilmByIndex(int i)
+	{
+		Film film = filmsInCart.get(i);
+		return film;
+	}
 }
