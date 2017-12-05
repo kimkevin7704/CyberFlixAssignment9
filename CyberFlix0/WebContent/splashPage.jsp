@@ -111,7 +111,6 @@ int var = n.get(i).getFilmID();
         </div>
       </div>
     </div>
-  </div>
   <!-- End Content -->
 </body>
 
