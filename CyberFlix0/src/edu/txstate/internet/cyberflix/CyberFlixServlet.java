@@ -49,7 +49,6 @@ public class CyberFlixServlet extends HttpServlet {
 		FilmDAO filmDAO = new FilmDAO();
 		List<Film> n = new ArrayList<Film>();
 		n = filmDAO.findNewestFilms(5);
-        System.out.print(n.get(0));
 
 		
 	}
