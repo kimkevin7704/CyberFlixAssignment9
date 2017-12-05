@@ -1,0 +1,129 @@
+
+body {
+  background: #FFA17F;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #0066cc, #ccffff);  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, right top, left top, from(#0066cc), to(#ccffff));
+  background: -webkit-linear-gradient(right, #0066cc, #ccffff);
+  background: -o-linear-gradient(right, #0066cc, #ccffff);
+  background: linear-gradient(to left, #0066cc, #ccffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 500px;
+}
+
+
+
+#login-icon {
+	font-size: 3vw;
+	padding: 4vw;
+}
+
+#form {
+	padding: 10px 10px 10px 10px;
+    height: auto;
+    width: 50%;
+    margin-bottom: 8px;
+}
+
+form {
+	margin-bottom: 8px;
+}
+
+#title {
+    padding-top: 10px;
+    margin-bottom: 2vh;
+    font-family: 'Poiret One', cursive;
+    font-size:7vw;
+}
+
+#titleposition {
+	padding-right: 6%;
+}
+
+#titlesmall {
+	font-family: 'Poiret One', cursive;
+    font-size:4vw;
+}
+
+#content {
+	font-family: 'Raleway', sans-serif;
+    margin-bottom: -5px;
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
+
+.w3-modal-content {
+    text-align: center;
+    width: 2%;
+}
+
+header {
+	border-radius: 8px 8px 0px 0px;
+}
+
+#title-input { 
+	margin: 10px; 
+	margin-top: 20px;
+}
+
+#film-desc { 
+	margin-bottom: 10px; 
+	margin-right: 45px;
+}
+
+#select-button { margin-bottom: 7px; }
+
+#content img {
+  border-radius: 3px;
+  padding: 5px;
+}
+
+#content sm
+
+#content img:hover {
+  cursor: pointer;
+}
+
+#search-button { 
+    margin-top: 5vh;
+	margin-bottom: 10vh; 
+	color: white;
+	background: #202020;
+}
+
+#submit-button { margin-bottom: 9px; }
+
+div.w3-modal-content.w3-round-large {
+	width: 40%;
+
+}
+
+/* moviesearchresults.jsp css */
+
+a:link    {
+  text-decoration:  none;
+  } 
+  
+
+#image {
+    position: relative;
+    width:  125px;
+    height: 150px;
+    -webkit-margin-before: 10%;   
+    margin-left: 10px;
+    column-fill: auto;
+}
+
+
+#cardcontainer {
+	float: left;
+	overflow: none;
+}
+
+#detailinfo {
+	font-family: 'Raleway', sans-serif;
+	margin-top: 10%;
+	margin-bottom: 3%;
+}
+
+ul {
+	padding-bottom: 3%;
+}
