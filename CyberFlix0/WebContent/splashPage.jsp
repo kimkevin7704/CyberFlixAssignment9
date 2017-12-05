@@ -71,6 +71,45 @@ int var = n.get(i).getFilmID();
       </div>
       <div class="w3-col s1 m3 l4"><p></p></div>
     </div>
+    
+    <!-- Find film by Alphabet button -->
+    <div class="w3-row w3-right">
+    <div class="w3-col s1 m3 l4"><p></p></div>
+      <div class="w3-col s10 m6 l4">
+        <button id='alphabet-button' onclick="document.getElementById('alphabetSearch').style.display='block'" class="w3-button w3-round-large">Find a Film by Alphabet
+        </button>
+      </div>
+      <div class="w3-col s1 m3 l4"><p></p></div>
+    </div>
+    
+    <!-- alphabet search box -->
+    <div id="alphabetSearch" class="w3-modal w3-display-middle">
+      <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-middle">
+
+        <header class="w3-container w3-black"> 
+              <p><b>Search CyberFlix by Alphabet</b></p>
+          </header>
+
+        <div class="w3-container">
+          <form action="http://localhost:8080/CyberFlix0/CyberFlixAlphaServlet" method="get">
+
+              Choose letter to start from: 
+                <select name="letter" id="select-button2">
+                <%
+                	String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                	for(int i = 0; i < alphabet.length(); i++)
+                	{
+                %>
+                	<option value='<%=i%>'><%=alphabet.charAt(i)%></option>
+                	<% }%>
+              </select>
+              <br>
+
+            <input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="Search">
+            </form>
+        </div>
+      </div>
+    </div>
 
     <!-- The modal -->
     <div id="modal" class="w3-modal w3-display-middle">
@@ -117,11 +156,15 @@ int var = n.get(i).getFilmID();
 <script>
 // Get the modal
 var modalVar = document.getElementById('modal');
+var alphaVar = document.getElementById('alphabetSearch');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modalVar) {
         modalVar.style.display = "none";
+    }
+    if (event.target == alphaVar) {
+    	alphaVar.style.display = "none";
     }
 }
 </script>

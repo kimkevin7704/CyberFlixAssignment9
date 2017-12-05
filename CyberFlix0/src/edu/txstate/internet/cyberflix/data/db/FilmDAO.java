@@ -132,13 +132,15 @@ public class FilmDAO extends DAO {
 	{
 		List <Film> films = new ArrayList <Film>();
 		try {
-			java.sql.PreparedStatement statement = Driver.conn.prepareStatement(FILM_SELECT_STRING + ALPHABETICAL_CLAUSES);
-			statement.setString(1, firstCharacter);
-			
-			ResultSet result = statement.executeQuery(statement.toString());
+			Connection cn = DAO.getDBConnection();
+			Statement statement = cn.createStatement();
+			String statementString = FILM_SELECT_STRING + "FROM film WHERE film.title LIKE '" + firstCharacter + "%'";
+			System.out.println(statementString);
+			ResultSet result = statement.executeQuery(statementString);
 
 			while(result.next())
 			{
+				System.out.println("asdf");
 				int filmID, length;
 				String title, description, releaseYear, rating;
 				FilmRating rawRating;
