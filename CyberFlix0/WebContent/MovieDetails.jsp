@@ -52,7 +52,6 @@ edu.txstate.internet.cyberflix.data.db.DAO, edu.txstate.internet.cyberflix.data.
 
         <div class="w3-container">
           <form action="http://localhost:8080/CyberFlix0/CyberFlixAddServlet" method="get">
-            <div id='addFilmID' name='filmIDToAdd' value='${film.film_id}'></div>
 			<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="NO" name="addFilm" style="position: absolute; left: 0; bottom: 0">
           	<input class="w3-button w3-blue w3-round-large" type="submit" id="submit-button" value="YES" name="addFilm">
           </form>
