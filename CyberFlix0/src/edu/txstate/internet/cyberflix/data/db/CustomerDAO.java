@@ -50,7 +50,7 @@ public class CustomerDAO extends DAO{
 		try {
 			  Connection cn = null;
 			  cn = DAO.getDBConnection();
-			  Statement st = null;
+			  java.sql.Statement st = null;
 			  st = cn.createStatement();
 			  String sql = "insert into customer " + 
 			  " (first_name, last_name, email, password) " + 
