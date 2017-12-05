@@ -26,7 +26,7 @@ edu.txstate.internet.cyberflix.data.db.*, java.sql.*, edu.txstate.internet.cyber
 <body>
   <div class="w3-container">
     <div class="w3-row w3-left w3-animate-opacity">
-      <div class="w3-col s12" id="title">C Y B E R F L I X</div>
+      <div class="w3-col s14" id="title">C Y B E R F L I X</div>
     </div>
     <% 
 	if(CyberFlixLoginServlet.isLogged)
@@ -57,7 +57,7 @@ for (int i = 0; i < n.size() - 4; i++)
 {
 int var = n.get(i).getFilmID();
 %>
-<div class="w3-col m3 w3-center w3-hover-opacity"><a href="http://localhost:8080/CyberFlix0/CyberFlixMovieDetailServlet?film_id=<%=var%>"><img style='height: 100%; width: 100%; object-fit: contain' src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg"></a>
+<div class="w3-col m3 w3-center w3-hover-opacity"><a href="http://localhost:8080/CyberFlix0/CyberFlixMovieDetailServlet?film_id=<%=var%>"><img style='max-height: 50%; width: 100%; object-fit: contain' src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg"></a>
 <% 
 	if(CyberFlixLoginServlet.isLogged)
 	{
@@ -77,7 +77,7 @@ for (int i = 4; i < n.size(); i++)
 %>
 <div class="w3-col m3 w3-center w3-hover-opacity">
 	<a href="http://localhost:8080/CyberFlix0/CyberFlixMovieDetailServlet?film_id=<%=var%>">
-		<img style='height: 100%; width: 100%; object-fit: contain' src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg">
+		<img style='max-height: 50%; max-width: 50%%; object-fit: contain' src="http://localhost:8080/CyberFlix0/images/<%=i%>.jpg">
 	</a>
 <% 
 	if(CyberFlixLoginServlet.isLogged)
@@ -88,9 +88,10 @@ for (int i = 4; i < n.size(); i++)
 	}
 %>    
 </div>
-<div class="w3-col s1 m3 l4"><p></p></div>
-</div>
+<!-- <div class="w3-col s1 m3 l4"><p></p></div> -->
+
 <%} %>
+</div>
 <!-- cart button -->	
 <div id="cart" class="w3-modal w3-display-middle">
       <div class="w3-modal-content w3-animate-opacity w3-round-large w3-display-middle">
